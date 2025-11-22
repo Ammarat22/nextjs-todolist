@@ -11,12 +11,12 @@ export default function Footer() {
   return (
     <div className="flex items-center justify-center w-full mt-20">
       {stats.map((item, index) => (
-        <div key={index} className="flex flex-col w-full text-center mb-4">
+        <div key={index} className="flex flex-col w-[200px] text-center mb-4">
           <p className="font-bold text-xl">
             <span className="text-amber-600">{item.value}</span>
             <span> {item.label}</span>
           </p>
-          <p className="text-gray-500 text-center">{item.description}</p>
+          <p className="sm:hidden lg:block text-gray-500 text-center">{item.description}</p>
         </div>
       ))}
     </div>
