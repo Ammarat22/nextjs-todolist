@@ -1,9 +1,11 @@
+"use client"
+
 import { Funnel } from 'lucide-react'
 import React from 'react'
 
 export default function Header() {
     return (
-        <div className='flex justify-between px-10 py-5'>
+        <div className='flex justify-between px-12 py-5'>
             <div className='flex gap-7 font-bold items-center'>
                 <div className="p-3 bg-amber-600 rounded-full inline-flex items-center justify-center">
                     <Funnel size={18} className="text-white" />
@@ -14,7 +16,7 @@ export default function Header() {
                 <p>Pricing</p>
                 <p>Testimonials</p>
             </div>
-                <button className='sm:hidden lg:block bg-orange-500 text-white px-4 py-2 font-bold rounded-full'>Download App</button>
+                <button className='sm:hidden lg:block bg-orange-500 text-white px-4 py-2 font-bold rounded-full'>DownloadApp</button>
         </div>
     )
 }

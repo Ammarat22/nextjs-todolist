@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 
 export default function Footer() {
@@ -9,7 +10,7 @@ export default function Footer() {
   ];
 
   return (
-    <div className="flex items-center justify-center w-full mt-20">
+    <div className="flex items-center justify-center w-full mt-28">
       {stats.map((item, index) => (
         <div key={index} className="flex flex-col w-[200px] text-center mb-4">
           <p className="font-bold text-xl">
