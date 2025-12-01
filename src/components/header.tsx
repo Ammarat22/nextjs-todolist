@@ -6,7 +6,7 @@ import React from 'react'
 export default function Header() {
     return (
         <div className='flex justify-between px-12 py-5'>
-            <div className='flex gap-7 font-bold items-center'>
+            <div className='flex gap-7 font-bold items-center opacity-90'>
                 <div className="p-3 bg-amber-600 rounded-full inline-flex items-center justify-center">
                     <Funnel size={18} className="text-white" />
                 </div>
