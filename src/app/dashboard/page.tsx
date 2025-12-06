@@ -14,6 +14,5 @@ export default function Home() {
         sectionList={data.taskListData.sectionList}
       />
     </div>
-
   );
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronRight, type LucideIcon } from "lucide-react"
+import { Calendar1, ChevronRight, type LucideIcon } from "lucide-react"
 
 import {
   Collapsible,
@@ -36,6 +36,7 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
+      <div className="flex items-center font-bold gap-2 px-2 mt-4"> <Calendar1 size={20} /> Overview</div>
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (

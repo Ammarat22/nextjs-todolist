@@ -5,7 +5,7 @@ import { Input } from './ui/input'
 export default function SubHeader() {
   return (
     <div className='flex justify-between items-center p-3 border-b'>
-      <div className='flex justify-between items-center font-semibold gap-2'>21stFeb,2025 <ChevronDown /></div>
+      <div className='flex justify-between items-center font-semibold text-lg gap-1'>21stFeb,2025 <ChevronDown size={20}/></div>
       <div className='flex justify-between items-center gap-4'>
         <div className="relative ms-2">
           <Search className="absolute left-2 top-3 h-4 w-4 text-gray-500" />
