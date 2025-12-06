@@ -1,16 +1,19 @@
 'use client';
 
 import Header from "@/components/header";
+import SubHeader from "@/components/sub-header";
+import TaskList from "@/components/task-list";
+import { data } from "./data";
 
 export default function Home() {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <main className="flex-1 flex items-center justify-center">
-        <h1 className="text-3xl font-bold">Welcome to Todo List App</h1>
-      </main>
+      <SubHeader />
+      <TaskList
+        sectionList={data.taskListData.sectionList}
+      />
     </div>
-    //  --- IGNORE ---  
-    
+
   );
 }
