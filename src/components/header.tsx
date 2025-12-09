@@ -16,7 +16,7 @@ export default function Header() {
                 <p>Pricing</p>
                 <p>Testimonials</p>
             </div>
-                <button className='sm:hidden lg:block bg-orange-500 text-white px-4 py-2 font-bold rounded-full'>DownloadApp</button>
+                <button className='hidden lg:block bg-orange-500 text-white px-4 py-2 font-bold rounded-full'>DownloadApp</button>
         </div>
     )
 }

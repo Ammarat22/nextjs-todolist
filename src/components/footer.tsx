@@ -17,7 +17,7 @@ export default function Footer() {
             <span className="text-amber-600">{item.value}</span>
             <span> {item.label}</span>
           </p>
-          <p className="sm:hidden lg:block text-gray-500 text-center">{item.description}</p>
+          <p className="hidden lg:block text-gray-500 text-center">{item.description}</p>
         </div>
       ))}
     </div>
