@@ -1,12 +1,12 @@
-import { Ellipsis, Square } from 'lucide-react'
 import React from 'react'
+import { Ellipsis, Square } from 'lucide-react'
 
 export interface TaskListProps {
     sectionList: {
         title: string;
         description: string;
         time: string;
-        color: string;
+        color?: string;
     }[];
 };
 export default function TaskList({
