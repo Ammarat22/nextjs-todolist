@@ -47,7 +47,7 @@ const data = {
           url: "#",
         },
         {
-          title: "Create a planer",
+          title: "Create a planner",
           url: "#",
         },
       ],

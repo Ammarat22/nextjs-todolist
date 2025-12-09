@@ -20,13 +20,13 @@ export const data = {
                 color: "bg-yellow-100"
             },
             {
-                title: "Create a planer",
+                title: "Create a planner",
                 description: "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 time: "2h:00PM - 3h:PM",
                 color: "bg-pink-200"
             },
             {
-                title: "Crete Treatment Plan",
+                title: "Create Treatment Plan",
                 description: "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 time: "2h:00PM - 3h:PM",
                 color: "bg-green-200"
