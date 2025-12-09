@@ -14,7 +14,7 @@ export default function SubHeader() {
             className="w-[240px] font-medium pl-8"
           />
         </div>
-        <button className='flex justify-between items-center rounded-md text-white px-2 py-1.5 gap-1.5 bg-blue-700'><Plus size={16} /> Add New List</button>
+        <button className='flex justify-between items-center text-sm rounded-md text-white px-2 py-2 gap-1.5 bg-blue-700'><Plus size={16} /> Add New List</button>
       </div>
     </div>
   )
