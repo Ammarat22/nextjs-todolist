@@ -7,13 +7,13 @@ import Image from 'next/image'
 export default function Main() {
     return (
         <div className='flex flex-col items-center justify-center mt-32 px-10'>
-            <div className='flex items-center justify-between w-[900px]'>
+            <div className='flex items-center justify-between w-full max-w-3xl'>
                 <Image
                     src="/images/image3.png"
                     alt="Placeholder"
                     width={200}
                     height={200}
-                    className="object-contain mt-4 -translate-y-16"
+                    className="object-contain -translate-y-16"
                 />
                 <div className='flex flex-col items-center'>
                     <p className='font-bold text-6xl'>To Do List</p>
