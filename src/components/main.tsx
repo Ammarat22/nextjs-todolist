@@ -7,7 +7,7 @@ import Image from 'next/image'
 export default function Main() {
     return (
         <div className='flex flex-col items-center justify-center mt-32 px-10'>
-            <div className='flex items-center justify-between mt-8'>
+            <div className='flex items-center justify-between w-[900px]'>
                 <Image
                     src="/images/image2.png"
                     alt="Placeholder"
