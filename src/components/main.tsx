@@ -19,7 +19,7 @@ export default function Main() {
                     <p className='font-bold text-6xl'>To Do List</p>
                     <button type="button"
                         className='bg-orange-500 text-white px-6 py-4 font-bold rounded-full text-6xl mt-1'>
-                        Optimizer
+                        Optimize
                     </button>
                 </div>
                 <Image
