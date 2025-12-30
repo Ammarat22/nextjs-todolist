@@ -1,8 +1,8 @@
 "use client"
 
 import React from 'react'
-import { Login } from './login'
 import Image from 'next/image'
+import { InputGroup, InputGroupInput } from './ui/input-group'
 
 export default function Main() {
     return (
@@ -35,7 +35,12 @@ export default function Main() {
                     className="object-contain mb-14"
                 />
             </div>
-            <Login />
+            <div className="grid w-full max-w-sm gap-6">
+            <InputGroup className="rounded-full mt-5">
+                <InputGroupInput type="email" placeholder="Enter your email"/>
+                <button type="submit" className='bg-orange-500 text-white px-4 py-1.5 font-bold rounded-full'>Get Started</button>
+            </InputGroup>
+        </div>
         </div>
     )
 }
