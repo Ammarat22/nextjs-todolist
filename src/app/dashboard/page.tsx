@@ -1,11 +1,20 @@
 'use client';
 
-export default function DashboardPage() {
+import Header from "@/components/header";
+import SubHeader from "@/components/sub-header";
+import TaskList from "@/components/task-list";
+import { data } from "./data";
+import SubMain from "@/components/sub-main";
+
+export default function Home() {
   return (
     <div className="flex flex-col h-screen">
-      <main className="flex-1 flex items-center justify-center">
-        <h1 className="text-3xl font-bold">Welcome to Todo List App</h1>
-      </main>
+      <Header />
+      <SubHeader />
+      <SubMain />
+      <TaskList
+        sectionList={data.taskListData.sectionList}
+      />
     </div>
   );
 }
