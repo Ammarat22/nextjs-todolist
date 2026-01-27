@@ -1,13 +1,11 @@
-import Footer from "@/components/footer";
-import Header from "@/components/header";
-import Main from "@/components/main";
+'use client';
 
-export default function Home() {
+export default function DashboardPage() {
   return (
-      <div>
-      <Header/>
-      <Main/>
-      <Footer/>
-      </div>
+    <div className="flex flex-col h-screen">
+      <main className="flex-1 flex items-center justify-center">
+        <h1 className="text-3xl font-bold">Welcome to Todo List App</h1>
+      </main>
+    </div>
   );
 }
