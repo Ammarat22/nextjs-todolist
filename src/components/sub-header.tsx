@@ -1,6 +1,7 @@
 import { ChevronDown, Plus, Search } from 'lucide-react'
 import React from 'react'
 import { Input } from './ui/input'
+import Link from 'next/link'
 
 export default function SubHeader() {
   return (
@@ -14,7 +15,14 @@ export default function SubHeader() {
             className="w-[240px] font-medium pl-8"
           />
         </div>
-        <button className='flex justify-between items-center text-sm rounded-md text-white px-2 py-2 gap-1.5 bg-blue-700'><Plus size={16} /> Add New List</button>
+        <Link
+          href="/dashboard/create"
+          className="flex items-center gap-2 rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 transition-colors"
+        >
+          <Plus size={16} />
+          <span>Add New List</span>
+
+        </Link>
       </div>
     </div>
   )

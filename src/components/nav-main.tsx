@@ -36,7 +36,7 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <div className="flex items-center font-bold gap-2 px-2 mt-4"> <Calendar1 size={20} /> Overview</div>
+      <div className="flex items-center font-bold gap-2 px-2 mt-4 text-lg"> <Calendar1 size={20} /> Overview</div>
       <SidebarGroupLabel>{label}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
@@ -49,7 +49,7 @@ export function NavMain({
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
+                  {item.icon && <item.icon/>}
                   <span className="text-lg font-bold">{item.title}</span>
                   <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                 </SidebarMenuButton>

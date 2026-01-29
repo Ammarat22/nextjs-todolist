@@ -1,10 +1,7 @@
 "use client"
 
 import * as React from "react"
-import {
-  BookOpen,
-  GalleryVerticalEnd,
-} from "lucide-react"
+import {BookOpen, GalleryVerticalEnd} from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
 import { TeamSwitcher } from "@/components/team-switcher"
@@ -15,7 +12,6 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
 const data = {
   user: {
     name: "shadcn",
