@@ -19,52 +19,30 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 
-type Props = {
-  className?: string
-  onSuccess?: () => void
-}
-
-export function CreateTask({
+export function UpdateTask({
   className,
-  onSuccess,
   ...props
-}: Props & React.ComponentProps<"div">) {
+}: React.ComponentProps<"div">) {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [time, setTime] = useState("")
-  const [created, setCreated] = useState(false)
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setCreated(false)
-
-  try {
-    const response = await fetch("http://localhost:8080/api/todolist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description, time, color: "bg-blue-500/20" }),
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log({
+      title,
+      description,
+      time,
     })
-
-    if (!response.ok) throw new Error("Failed to create task")
-
-    const createdTask = await response.json()
-    console.log("Task created:", createdTask)
-
-    setCreated(true)
-    if (onSuccess) onSuccess()
-  } catch (error) {
-    console.error("Error creating task:", error)
-    alert("Failed to create task")
   }
-}
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">Create Task</CardTitle>
+          <CardTitle className="text-xl">Edit Task</CardTitle>
           <CardDescription>
-            Fill in the form to create a new task
+            Update the information of your task
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -106,7 +84,7 @@ export function CreateTask({
               </Field>
               <Field>
                 <Button type="submit" className="w-full">
-                  Create Task
+                  Update Task
                 </Button>
               </Field>
             </FieldGroup>
@@ -114,7 +92,7 @@ export function CreateTask({
         </CardContent>
       </Card>
       <FieldDescription className="px-6 text-center">
-        After creation, the task will appear in your task list.
+        Make sure all fields are correct before saving your changes.
       </FieldDescription>
     </div>
   )

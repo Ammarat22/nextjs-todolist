@@ -5,6 +5,7 @@ export const ROUTES = {
     DASHBOARD_TASKS: {
         CREATE: '/dashboard/create',
         LIST: '/dashboard',
+        UPDATE: '/dashboard/update',
     } as const
 };
 

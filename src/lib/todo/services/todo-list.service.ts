@@ -1,23 +1,70 @@
-import { TodoListDto } from "../models/todo-list.model";
+import { environment } from "@/config/environment.config";
+import { TodoListDto, TodoListReqDto } from "../models/todo-list.model";
 import axios from 'axios';
 
 
-const API_URL = 'http://localhost:8080/api/todolist';
+const {
+    api: {
+        rest: {
+            endpoints: { todolist: todolistUrl },
+        },
+    },
+} = environment;
+
 
 export const fetchTodoLists = (order?: string): Promise<TodoListDto[]> => {
-  const url = order ? `${API_URL}?order=${order}` : API_URL;
-  return fetch(url)
-  .then((res) => res.json());
-}
+  return axios
+    .get<TodoListDto[]>(todolistUrl, { params: { order } })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur fetchTodoLists:', error);
+      return [];
+    });
+};
 
 export const getAllTodoLists = async (
   order?: 'asc' | 'desc',
 ): Promise<TodoListDto[]> => {
-  try {
-    const response = await axios.get<TodoListDto[]>(API_URL, { params: { order } });
-    return response.data;
-  } catch (error) {
-    console.error('Erreur getAllTodoLists:', error);
-    return [];
-  }
+  return axios
+    .get<TodoListDto[]>(`${todolistUrl}`, { params: { order } })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur getAllTodoLists:', error);
+      return [];
+    });
 };
+
+export const createTodoList = async (
+  todoList: Partial<TodoListReqDto>,
+): Promise<TodoListDto | null> => {
+    return axios
+    .post<TodoListDto>(todolistUrl, todoList)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur createTodoList:', error);
+      return null;
+    });
+};
+
+export async function updateTodoList(
+  id: number,
+  todoList: Partial<TodoListReqDto>,
+): Promise<TodoListDto | null>{
+    return axios
+    .put<TodoListDto>(`${todolistUrl}/${id}`, todoList)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur updateTodoList:', error);
+      return null;
+    });
+};
+
+export async function deleteTodoList(id: number): Promise<boolean> {
+    return axios
+    .delete(`${todolistUrl}/${id}`)
+    .then(() => true)
+    .catch((error) => {
+      console.error('Erreur deleteTodoList:', error);
+      return false;
+    });
+}
