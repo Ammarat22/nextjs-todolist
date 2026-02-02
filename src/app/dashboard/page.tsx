@@ -1,20 +1,17 @@
-'use client';
-
-import Header from "@/components/header";
+import HeaderList from "@/components/header-list";
 import SubHeader from "@/components/sub-header";
-import TaskList from "@/components/task-list";
-import { data } from "./data";
 import SubMain from "@/components/sub-main";
+import TaskList from "@/components/task-list";
+import { getAllTodoLists } from "@/lib/todo/services/todo-list.service";
 
-export default function Home() {
+export default async function DashboardPage() {
+  const tasks = await getAllTodoLists();
   return (
     <div className="flex flex-col h-screen">
-      <Header />
+      <HeaderList />
       <SubHeader />
       <SubMain />
-      <TaskList
-        sectionList={data.taskListData.sectionList}
-      />
+      <TaskList sectionList={tasks} />
     </div>
   );
 }
