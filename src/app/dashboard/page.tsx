@@ -6,7 +6,6 @@ import { getAllTodoLists } from "@/lib/todo/services/todo-list.service";
 
 export default async function DashboardPage() {
   const tasks = await getAllTodoLists();
-  
   return (
     <div className="flex flex-col h-screen">
       <HeaderList />

@@ -1,9 +1,23 @@
-
 import { UpdateTask } from '@/components/dashboard/update-task'
+import { getTodoListById } from '@/lib/todo/services/todo-list.service'
 import { GalleryVerticalEnd } from 'lucide-react'
-import React from 'react'
+import { notFound } from 'next/navigation'
 
-export default function DashboarUpdateTask() {
+export default async function DashboardUpdateTask({
+   params,
+}: {
+   params: Promise<{ id: string }>
+}) {
+  const { id: idString } = await params
+  const id = Number(idString)
+  if (isNaN(id)) {
+    notFound()
+  }
+  const task = await getTodoListById(id)
+  if (!task) {
+    notFound()
+  }
+
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="flex w-full max-w-sm flex-col gap-6">
@@ -13,9 +27,8 @@ export default function DashboarUpdateTask() {
           </div>
           Acme Inc.
         </a>
-        <UpdateTask />
+        <UpdateTask task={task} />
       </div>
     </div>
   )
 }
-

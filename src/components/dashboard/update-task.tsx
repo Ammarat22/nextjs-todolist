@@ -18,24 +18,55 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
 
 export function UpdateTask({
+  task,
   className,
   ...props
-}: React.ComponentProps<"div">) {
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [time, setTime] = useState("")
+}: {
+  task: {
+    id: number
+    title: string
+    description: string
+    startTime: string
+    endTime: string
+  }
+} & React.ComponentProps<"div">) {
+  const [title, setTitle] = useState(task.title)
+  const [description, setDescription] = useState(task.description)
+  const [startTime, setStartTime] = useState(task.startTime)
+  const [endTime, setEndTime] = useState(task.endTime)
+  const router = useRouter()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    try {
+      const response = await fetch(`http://localhost:8080/api/todolist/${task.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, description, startTime, endTime }),
+      })
+      if (!response.ok) {
+        const errorData = await response.json()
+        console.error("Error updating task:", errorData)
+        return
+      }
+      const updatedTask = await response.json()
+      console.log("Task updated successfully:", updatedTask)
+      router.push("/dashboard")
+    } catch (error) {
+      console.error("Network error:", error)
+    }
     console.log({
+      id: task.id,
       title,
       description,
-      time,
+      startTime: startTime,
+      endTime: endTime,
+
     })
   }
-
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -73,13 +104,23 @@ export function UpdateTask({
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="time">Time</FieldLabel>
+                <FieldLabel htmlFor="startTime">Start Time</FieldLabel>
                 <Input
-                  id="time"
-                  type="text"
+                  id="startTime"
+                  type="time"
                   placeholder="Estimated time"
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="endTime">End Time</FieldLabel>
+                <Input
+                  id="endTime"
+                  type="time"
+                  placeholder="Estimated time"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
                 />
               </Field>
               <Field>

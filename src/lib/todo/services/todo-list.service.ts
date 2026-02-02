@@ -4,11 +4,11 @@ import axios from 'axios';
 
 
 const {
-    api: {
-        rest: {
-            endpoints: { todolist: todolistUrl },
-        },
+  api: {
+    rest: {
+      endpoints: { todolist: todolistUrl },
     },
+  },
 } = environment;
 
 
@@ -34,10 +34,22 @@ export const getAllTodoLists = async (
     });
 };
 
+export const getTodoListById = async (
+  id: number,
+): Promise<TodoListDto | null> => {
+  return axios
+    .get<TodoListDto>(`${todolistUrl}/${id}`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur getTodoListById:', error);
+      return null;
+    });
+}
+
 export const createTodoList = async (
   todoList: Partial<TodoListReqDto>,
 ): Promise<TodoListDto | null> => {
-    return axios
+  return axios
     .post<TodoListDto>(todolistUrl, todoList)
     .then((res) => res.data)
     .catch((error) => {
@@ -49,8 +61,8 @@ export const createTodoList = async (
 export async function updateTodoList(
   id: number,
   todoList: Partial<TodoListReqDto>,
-): Promise<TodoListDto | null>{
-    return axios
+): Promise<TodoListDto | null> {
+  return axios
     .put<TodoListDto>(`${todolistUrl}/${id}`, todoList)
     .then((res) => res.data)
     .catch((error) => {
@@ -60,7 +72,7 @@ export async function updateTodoList(
 };
 
 export async function deleteTodoList(id: number): Promise<boolean> {
-    return axios
+  return axios
     .delete(`${todolistUrl}/${id}`)
     .then(() => true)
     .catch((error) => {

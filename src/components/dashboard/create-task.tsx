@@ -18,6 +18,7 @@ import {
   FieldSeparator,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
 
 type Props = {
   className?: string
@@ -31,32 +32,49 @@ export function CreateTask({
 }: Props & React.ComponentProps<"div">) {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [time, setTime] = useState("")
-  const [created, setCreated] = useState(false)
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [startTime, setStartTime] = useState("")
+  const [endTime, setEndTime] = useState("")
+
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  setCreated(false)
+    e.preventDefault()
+    setError("")
 
-  try {
-    const response = await fetch("http://localhost:8080/api/todolist", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, description, time, color: "bg-blue-500/20" }),
-    })
+    /*
+      // Validation : endTime est obligatoire
+      if (!endTime) {
+        setError("L'heure de fin est obligatoire")
+        return
+      }
+  */
+    setLoading(true)
 
-    if (!response.ok) throw new Error("Failed to create task")
-
-    const createdTask = await response.json()
-    console.log("Task created:", createdTask)
-
-    setCreated(true)
-    if (onSuccess) onSuccess()
-  } catch (error) {
-    console.error("Error creating task:", error)
-    alert("Failed to create task")
+    console.log("Payload envoyé :", { title, description, startTime, endTime })
+    try {
+      const response = await fetch("http://localhost:8080/api/todolist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, description, startTime, endTime }),
+      })
+      if (!response.ok) {
+        const errorData = await response.json()
+        console.error("Erreur backend:", errorData)
+        setError(errorData.message || "Erreur lors de la création")
+        return
+      }
+      const data = await response.json()
+      console.log("Task created:", data)
+      router.push("/dashboard")
+    } catch (err) {
+      console.error("Erreur réseau:", err)
+      setError("Erreur de connexion au serveur")
+    } finally {
+      setLoading(false)
+    }
   }
-}
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -95,13 +113,23 @@ export function CreateTask({
                 />
               </Field>
               <Field>
-                <FieldLabel htmlFor="time">Time</FieldLabel>
+                <FieldLabel htmlFor="startTime">Start Time</FieldLabel>
                 <Input
-                  id="time"
-                  type="text"
+                  id="startTime"
+                  type="time"
                   placeholder="Estimated time"
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                />
+              </Field>
+              <Field>
+                <FieldLabel htmlFor="endTime">End Time</FieldLabel>
+                <Input
+                  id="endTime"
+                  type="time"
+                  placeholder="Estimated time"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
                 />
               </Field>
               <Field>
@@ -119,3 +147,4 @@ export function CreateTask({
     </div>
   )
 }
+
